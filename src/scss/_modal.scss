@@ -1,0 +1,68 @@
+@use "util" as u;
+@use "global" as *;
+
+.modal {
+	height: 100%;
+	padding: $spacing-large;
+	margin-block: 0;
+	background: linear-gradient(to bottom, $color-quaternary, $color-white);
+	border: none;
+	> *:not(:last-child) {
+		margin-bottom: $spacing-default;
+	}
+	&__link {
+		@include link-base;
+	}
+	&__header {
+		display: flex;
+		justify-content: space-between;
+	}
+	&__paragraph {
+		max-width: u.rem(800);
+	}
+	&__close-button {
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		transition: scale $duration-standard;
+		&:active {
+			scale: $scale-default;
+		}
+		svg {
+			fill: $color-white;
+		}
+		rect {
+			transition: fill $duration-standard;
+		}
+		&:hover,
+		&:focus {
+			rect {
+				fill: $color-danger-hover;
+			}
+		}
+	}
+	&::backdrop {
+		background: linear-gradient(to bottom, $color-quaternary, $color-white);
+	}
+	&__video {
+		iframe {
+			max-width: u.rem(1200);
+			aspect-ratio: 16/9;
+			border-radius: $border-radius-default;
+		}
+	}
+	@media screen and (min-width: 1024px) {
+		margin: auto;
+		max-height: fit-content;
+		border-radius: $border-radius-default;
+		&::backdrop {
+			background: #00000080;
+			backdrop-filter: blur(4px);
+		}
+		&__video {
+			iframe {
+				width: calc(100vw - u.rem(60));
+			}
+		}
+	}
+}

@@ -1,0 +1,113 @@
+@use "util" as u;
+@use "global" as *;
+
+.gallery {
+	position: relative;
+	&__link {
+		@include link-base;
+	}
+	&__btns {
+		display: flex;
+		flex-direction: column;
+		gap: $spacing-medium;
+		text-align: center;
+	}
+	&__btn {
+		@include button-base;
+		&:hover,
+		&:focus {
+			background-color: $color-quaternary;
+		}
+		&--icon {
+			svg {
+				fill: $color-white;
+				transition: fill $duration-standard;
+			}
+			&:hover,
+			&:focus {
+				color: $color-primary;
+				svg {
+					fill: $color-primary;
+				}
+			}
+		}
+		&--second {
+			background-color: $color-secondary;
+			&:hover,
+			&:focus {
+				color: $color-secondary;
+			}
+		}
+	}
+	&__grid {
+		display: grid;
+		grid-template-areas:
+			"gallery__el-1"
+			"gallery__el-2"
+			"gallery__el-3"
+			"gallery__el-4"
+			"gallery__el-5"
+			"gallery__el-6";
+		gap: $spacing-large;
+	}
+	&__copyright {
+		font-size: $font-size-xs;
+		span {
+			font-weight: 700;
+		}
+	}
+	&__box {
+		position: relative;
+	}
+	&__play-btn {
+		position: absolute;
+		inset: 0;
+		margin: auto;
+		width: u.rem(48);
+		height: u.rem(48);
+		cursor: pointer;
+		background-color: $color-primary;
+		border-radius: 50%;
+		border: none;
+		transition: background-color $duration-standard, scale $duration-standard;
+		&:active {
+			scale: $scale-default;
+		}
+		&:hover,
+		&:focus {
+			background-color: $color-quaternary;
+		}
+		svg {
+			fill: $color-white;
+			transition: fill $duration-standard;
+			position: absolute;
+			inset: 0;
+			margin: auto;
+			margin-left: u.rem(17);
+		}
+		&:hover,
+		&:focus {
+			svg {
+				fill: $color-primary;
+			}
+		}
+	}
+	@media screen and (min-width: 480px) {
+		&__btns {
+			flex-direction: row;
+		}
+	}
+
+	@media screen and (min-width: 768px) {
+		&__btns {
+			justify-content: center;
+		}
+		&__grid {
+			grid-template-areas:
+				"gallery__el-1 gallery__el-2 gallery__el-4"
+				"gallery__el-1 gallery__el-2 gallery__el-5"
+				"gallery__el-3 gallery__el-3 gallery__el-5"
+				"gallery__el-6 gallery__el-6 gallery__el-6";
+		}
+	}
+}

@@ -1,0 +1,140 @@
+@use "util" as u;
+
+// COLORS
+$color-primary: #13304a;
+$color-secondary: #076d59;
+$color-tertiary: #37b971;
+$color-quaternary: #e9ece7;
+$color-black: #000000;
+$color-white: #ffffff;
+$color-content: #222222;
+$color-danger: #9f0000;
+$color-danger-hover: #af0000;
+
+// FONTS
+$font-size-large: clamp(
+	u.rem(32),
+	1.9089805825242718rem + 0.3883495145631068vw,
+	u.rem(38)
+);
+$font-size-medium: clamp(
+	u.rem(28),
+	1.6893203883495145rem + 0.2588996763754045vw,
+	u.rem(32)
+);
+$font-size-small: u.rem(16);
+$font-size-xs: u.rem(13.33);
+$line-height-standard: 1.4;
+$line-height-small: 1.1;
+
+// SPACING
+$spacing-large: u.rem(30);
+$spacing-default: u.rem(20);
+$spacing-medium: u.rem(15);
+$spacing-small: u.rem(8);
+
+// ANIMATION
+$duration-standard: 0.33s;
+$scale-default: 0.97;
+
+// BORDER
+$border-radius-default: u.rem(20);
+
+// RESET
+html {
+	font-size: 100%;
+	box-sizing: border-box;
+}
+
+*:not(dialog),
+*:not(dialog)::before,
+*:not(dialog)::after {
+	box-sizing: inherit;
+	padding: 0;
+	margin: 0;
+}
+
+img {
+	width: 100%;
+	height: 100%;
+}
+
+// MIXINS
+
+@mixin headers-base {
+	line-height: $line-height-small;
+	font-weight: 700;
+	color: $color-primary;
+	text-align: center;
+}
+
+@mixin link-base {
+	color: $color-secondary;
+	font-weight: 500;
+	transition: color $duration-standard;
+	&:hover,
+	&:focus {
+		color: $color-tertiary;
+	}
+}
+
+@mixin button-base {
+	display: flex;
+	width: fit-content;
+	padding: u.rem(8) u.rem(24);
+	gap: $spacing-small;
+	align-items: center;
+	line-height: $line-height-standard;
+	border-radius: 8px;
+	background-color: $color-primary;
+	color: $color-white;
+	font-size: $font-size-small;
+	font-weight: 600;
+	text-decoration: none;
+	border: none;
+	cursor: pointer;
+	transition: background-color $duration-standard, color $duration-standard,
+		scale $duration-standard;
+
+	&:active {
+		scale: $scale-default;
+	}
+}
+
+@mixin wrapper-base($max-width: u.rem(1200), $padding: u.rem(60)) {
+	width: min($max-width, calc(100% - $padding));
+	margin-inline: auto;
+}
+
+// CONTENT
+
+body {
+	min-height: 100vh;
+	padding-block: $spacing-large;
+	font-family: "Inter", sans-serif;
+}
+
+h2 {
+	@include headers-base;
+	font-size: $font-size-large;
+}
+h3 {
+	@include headers-base;
+	font-size: $font-size-medium;
+}
+p {
+	line-height: $line-height-standard;
+	font-weight: 400;
+	color: $color-content;
+}
+
+.wrapper {
+	@include wrapper-base();
+	&--small {
+		@include wrapper-base(u.rem(800));
+	}
+}
+
+header.wrapper--small > * {
+	margin-bottom: $spacing-default;
+}
