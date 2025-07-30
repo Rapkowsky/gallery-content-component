@@ -7,6 +7,23 @@
 	margin-block: 0;
 	background: linear-gradient(to bottom, $color-quaternary, $color-white);
 	border: none;
+	&::backdrop {
+		background: linear-gradient(to bottom, $color-quaternary, $color-white);
+		opacity: 0;
+	}
+	&[open] {
+		animation: slide-up 1000ms forwards, fade-in 1000ms forwards;
+		&::backdrop {
+			animation: fade-in 500ms forwards;
+		}
+	}
+	&[closing] {
+		display: block;
+		animation: fade-out 700ms forwards, slide-out 700ms forwards;
+		&::backdrop {
+			animation: fade-out 500ms forwards;
+		}
+	}
 	> *:not(:last-child) {
 		margin-bottom: $spacing-default;
 	}
@@ -42,9 +59,7 @@
 			}
 		}
 	}
-	&::backdrop {
-		background: linear-gradient(to bottom, $color-quaternary, $color-white);
-	}
+
 	&__video {
 		iframe {
 			width: 100%;
@@ -65,6 +80,38 @@
 			iframe {
 				width: calc(100vw - u.rem(60));
 			}
+		}
+	}
+	@keyframes fade-in {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+	@keyframes fade-out {
+		0% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0;
+		}
+	}
+	@keyframes slide-up {
+		0% {
+			transform: translateY(u.rem(50));
+		}
+		100% {
+			transform: translateY(0%);
+		}
+	}
+	@keyframes slide-out {
+		0% {
+			transform: translateY(0%);
+		}
+		100% {
+			transform: translateY(u.rem(50));
 		}
 	}
 }

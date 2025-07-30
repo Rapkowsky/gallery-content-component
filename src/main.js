@@ -24,15 +24,18 @@ const openVideoModal = () => {
 };
 
 const closeVideoModal = () => {
-	if (modal && videoContainer) {
-		modal.close();
-		videoContainer.innerHTML = "";
-	}
-};
+	if (modal.hasAttribute("open")) {
+		modal.setAttribute("closing", "");
 
-const handleKeyboardClose = (e) => {
-	if (e.key === "Escape") {
-		closeVideoModal();
+		modal.addEventListener(
+			"animationend",
+			() => {
+				modal.removeAttribute("closing");
+				modal.close();
+				videoContainer.innerHTML = "";
+			},
+			{ once: true }
+		);
 	}
 };
 
@@ -53,5 +56,8 @@ if (openModalBtn && closeModalBtn && modal) {
 	openModalBtn.addEventListener("click", openVideoModal);
 	closeModalBtn.addEventListener("click", closeVideoModal);
 	modal.addEventListener("click", handleOutsideModalClick);
-	document.addEventListener("keydown", handleKeyboardClose);
+	modal.addEventListener("cancel", (e) => {
+		e.preventDefault();
+		closeVideoModal();
+	});
 }
