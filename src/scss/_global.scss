@@ -132,9 +132,8 @@ p {
 	@include wrapper-base();
 	&--small {
 		@include wrapper-base(u.rem(800));
+		> * {
+			margin-bottom: $spacing-default;
+		}
 	}
-}
-
-header.wrapper--small > * {
-	margin-bottom: $spacing-default;
 }

@@ -12,9 +12,9 @@
 			rel="stylesheet" />
 	</head>
 	<body>
-		<div id="app">
-			<div class="gallery">
-				<header class="wrapper--small">
+		<main id="app">
+			<section class="gallery">
+				<div class="wrapper--small">
 					<h2 class="gallery__heading">Gallery Heading</h2>
 					<p>
 						Gallery paragraph - Lorem <i>ipsum</i> dolor sit amet,
@@ -30,7 +30,7 @@
 						<a
 							class="gallery__btn gallery__btn--icon"
 							href="#"
-							aria-label="Go to gallery one">
+							aria-label="Go to gallery one button">
 							<span>Gallery Link One</span>
 
 							<svg
@@ -54,13 +54,13 @@
 						<a
 							class="gallery__btn gallery__btn--second"
 							href="#"
-							aria-label="Go to gallery two">
+							aria-label="Go to gallery two button">
 							<span class="gallery__btn-text">Gallery Link Two</span>
 						</a>
 					</div>
-				</header>
+				</div>
 
-				<main class="wrapper gallery__grid">
+				<div class="wrapper gallery__grid">
 					<div style="grid-area: gallery__el-1">
 						<picture>
 							<source
@@ -147,8 +147,8 @@
 							<span>Gallery media copyright</span> - Lorem ipsum dolor sit amet.
 						</p>
 					</div>
-				</main>
-			</div>
+				</div>
+			</section>
 			<!-- MODAL -->
 			<dialog
 				class="modal"
@@ -184,7 +184,7 @@
 
 				<div class="modal__video"></div>
 			</dialog>
-		</div>
+		</main>
 		<script type="module" src="/src/main.js"></script>
 	</body>
 </html>
